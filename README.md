@@ -1,4 +1,4 @@
 dukebox-server
 ==============
 
-Source code for the DukeBox server
+Source code for the dukeBox server
