@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("dukeBox.Web")]
+[assembly: AssemblyTitle("dukeBox")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("dukeBox.Web")]
+[assembly: AssemblyProduct("dukeBox")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cf40ecef-2b93-482a-a23a-b79c27693c56")]
+[assembly: Guid("08e50615-9a17-46f1-bf74-1177600a39b0")]
 
 // Version information for an assembly consists of the following four values:
 //
