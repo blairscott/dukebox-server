@@ -24,7 +24,7 @@ namespace dukeBox.Controllers
             return results;
         }
 
-        [HttpPut] 
+        [HttpGet] 
         public void Get(int id)
         {
             SongQueue.AddSongToQueue(id);
