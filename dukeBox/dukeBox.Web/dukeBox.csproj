@@ -186,6 +186,13 @@
     <Content Include="Content\jplayer.blue.monday.jpg" />
     <Content Include="Content\jplayer.blue.monday.seeking.gif" />
     <Content Include="Content\jplayer.blue.monday.video.play.png" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -210,6 +217,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Content\main.less" />
+    <Content Include="Scripts\bootstrap.min.js.map">
+      <DependentUpon>bootstrap.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jplayer.playlist.min.js" />
     <Content Include="Scripts\Jplayer.swf" />
@@ -242,6 +256,21 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\respond.min.js.map">
+      <DependentUpon>respond.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\moment.min.js.map">
+      <DependentUpon>moment.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.signalR-2.0.2.min.js.map">
+      <DependentUpon>jquery.signalR-2.0.2.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\moment-with-langs.min.js.map">
+      <DependentUpon>moment-with-langs.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.js.map">
+      <DependentUpon>jquery-1.10.2.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

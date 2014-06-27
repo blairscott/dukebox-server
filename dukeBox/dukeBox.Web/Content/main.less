@@ -1,0 +1,73 @@
+﻿@dukeboxBlack: #4f5555;
+@dukeboxBlue: #69eef5;
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: @dukeboxBlack;
+    font-family: Arial;
+    font-size: 30px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+#wrapper {
+    width: 1024px;
+    margin: 0 auto;
+
+    header {
+    position:relative;
+    height:77px;
+        p {
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            margin:0;
+            left:400px;
+        }
+    }
+
+    #song-list-wrapper {
+        float: left;
+        width: 100%;
+        margin: 20px 0;
+
+        #song-list {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+
+            li {
+                color: #fff;
+                clear: both;
+                float: left;
+                padding: 10px 0;
+                border-bottom: 1px solid #fff;
+                width: 100%;
+
+                .poster {
+                    float: left;
+
+                    img {
+                        width: 200px;
+                        margin-right: 25px;
+                    }
+                }
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                label {
+                    width: 150px;
+                }
+            }
+        }
+    }
+}

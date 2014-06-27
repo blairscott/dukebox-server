@@ -22,8 +22,9 @@ namespace dukeBox
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
+                      "~/Content/main.css",
                       "~/Content/jplayer.blue.monday.css"));
+
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                        "~/Scripts/moment.min.js",
