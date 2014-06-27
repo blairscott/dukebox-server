@@ -24,6 +24,12 @@ namespace dukeBox.Controllers
             return results;
         }
 
+        [HttpPut] 
+        public void Get(int id)
+        {
+            SongQueue.AddSongToQueue(id);
+        }
+
         // POST api/<controller>
         [HttpPost]
         public void AddSongToQueue([FromBody]Song song)

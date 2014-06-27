@@ -72,6 +72,15 @@ namespace dukeBox
             }
 
         }
+
+        internal static void AddSongToQueue(int id)
+        {
+            var song = Subsonic.GetSong(id.ToString());
+            if (song != null)
+            {
+                SongQueue.AddSongToQueue(song);
+            }
+        }
     }
  
 
@@ -722,6 +731,44 @@ namespace dukeBox
             }
 
             return searchResults;
+        }
+
+        public static Song GetSong(string id)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("id", id);
+            Stream theStream = MakeGenericRequest("getSong", parameters);
+            // Read the response as a string
+            StreamReader sr = new StreamReader(theStream);
+            string result = sr.ReadToEnd();
+
+            // Parse the resulting XML string into an XmlDocument
+            XmlDocument myXML = new XmlDocument();
+            myXML.LoadXml(result);
+            // Parse the artist
+            if (myXML.ChildNodes[1].Name == "subsonic-response")
+            {
+                if (myXML.ChildNodes[1].FirstChild.Name.Contains("song"))
+                {
+                    var node = myXML.ChildNodes[1].FirstChild;
+                    
+                        string title = node.Attributes["title"].Value;
+                        string theId = node.Attributes["id"].Value;
+                        string artist = "";
+                        string album = "";
+                        string duration = "";
+
+                    
+                            artist = node.Attributes["artist"].Value;
+                            album = node.Attributes["album"].Value;
+                            duration = node.Attributes["duration"].Value;
+                            
+                        
+
+                        return new Song(title, artist, album, theId) { duration = duration };
+                    }
+                }
+            return null;
         }
 
         /// <summary>
