@@ -27,7 +27,7 @@
 /* Color setup */
 /* You are free to change all of this */
 .success{
-    background-color: yellowgreen;
+    background-color: #60fb55;
     color: white;
 }
 .error{
@@ -39,7 +39,7 @@
     color: white;
 }
 .info{
-    background-color: deepskyblue;
+    background-color: #69eef5;
     color: white;
 }
 .default{

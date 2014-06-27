@@ -78,6 +78,7 @@
             // Create a function that the hub can call back to display messages.
             dukebox.client.addSongToQueue = function (song) {
                 addSongToQueue(song, true);
+                notif({msg: 'Added song "' + song.name + '"', type:"info"});
             };
 
             dukebox.client.swapSongs = function (bottomSongIndex, topSongIndex) {
