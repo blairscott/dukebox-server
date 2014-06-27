@@ -54,7 +54,7 @@ namespace dukeBox
         {
             //check queue for song
             var songIndex = SongQueue.Songs.FindIndex(i => i.id == id);
-            if (songIndex > 0)
+            if (songIndex > 1)
             {
                 Songs.Swap(songIndex, songIndex - 1);
                 var context = GlobalHost.ConnectionManager.GetHubContext<SongsHub>();
