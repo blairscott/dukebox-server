@@ -25,10 +25,22 @@ namespace dukeBox.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]Song song)
+        [HttpPost]
+        public void AddSongToQueue([FromBody]Song song)
         {
             SongQueue.AddSongToQueue(song);
+        }
 
+        [HttpGet]
+        public void MoveSongUp(int id)
+        {
+            SongQueue.MoveSongUp(id.ToString());
+        }
+
+        [HttpPost]
+        public void RemoveTopSong()
+        {
+            SongQueue.RemoveTopSong();
         }
 
 

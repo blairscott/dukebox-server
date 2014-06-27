@@ -49,6 +49,29 @@ namespace dukeBox
 
             return Songs.IndexOf(CurrentSong);
         }
+
+        public static void MoveSongUp(string id)
+        {
+            //check queue for song
+            var songIndex = SongQueue.Songs.FindIndex(i => i.id == id);
+            if (songIndex > 0)
+            {
+                Songs.Swap(songIndex, songIndex - 1);
+                var context = GlobalHost.ConnectionManager.GetHubContext<SongsHub>();
+                context.Clients.All.swapSongs(songIndex, songIndex -1);
+            }
+        }
+
+        public static void RemoveTopSong()
+        {
+            if (Songs.Any())
+            {
+                Songs.RemoveAt(0);
+                var context = GlobalHost.ConnectionManager.GetHubContext<SongsHub>();
+                context.Clients.All.removeSongFromQueue(0);
+            }
+
+        }
     }
  
 

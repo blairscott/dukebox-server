@@ -12,5 +12,15 @@ namespace dukeBox.Hubs
         {
             Clients.All.addSongToQueue(song);
         }
+
+        public void SwapSongs(int bottomSong, int topSong)
+        {
+            Clients.All.swapSongs(bottomSong, topSong);
+        }
+
+        public void RemoveSongFromQueue(int index)
+        {
+            Clients.All.removeSongFromQueue(index);
+        }
     }
 }

@@ -50,7 +50,7 @@
             </div>
             <div class="jp-current-time"></div>
             <div class="jp-duration"></div>
-            <ul class="jp-toggles">
+            <ul style="display:none;" class="jp-toggles">
                 <li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
                 <li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
                 <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
@@ -90,27 +90,30 @@
             var dukebox = $.connection.songsHub;
             // Create a function that the hub can call back to display messages.
             dukebox.client.addSongToQueue = function (song) {
-                addSongToQueue(song);                
+                addSongToQueue(song, true);                
             };
+
+            dukebox.client.swapSongs = function (bottomSongIndex, topSongIndex) {
+                playlist.swap(bottomSongIndex, topSongIndex);
+                refreshQueue();
+            };
+
+            dukebox.client.removeSongFromQueue = function (index) {
+                playlist.remove(index);
+                $('#song-list > li').eq(index).remove();
+            };
+
+           
 
             // Start the connection.
             $.connection.hub.start().done(function () {
-                //get all current songs
-                $.ajax({
-                    url: apiUrl + "/api/Songs",
-                    type: "GET",
-                    success: function (songs, textStatus, jqXHR) {
-                        for (var i = 0; i < songs.length; i++) {
-                            addSongToQueue(songs[i]);
-                        }
-                    }
-                });
+                initializeQueue();
 
                 $('#add-song').submit(function (event) {
                     var title = $('#song-title').val();
                     var song = { Title: title };
                     $.ajax({
-                        url: apiUrl + "/api/Songs/",
+                        url: apiUrl + "/api/Songs/AddSongToQueue",
                         type: "POST",
                         data: JSON.stringify(song),
                         contentType: "application/JSON"
@@ -130,7 +133,7 @@
                                 var li = $("<li>").html(song.name + " (" + song.artist + ", <em>" + song.album + "</em>) <br />Length: " + moment().startOf('day').seconds(song.duration).format('H:mm:ss') + "<br />");
                                 var a = $("<a>").text("Add to Queue").attr('href', '#').click(function () {                                    
                                     $.ajax({
-                                        url: apiUrl + "/api/Songs",
+                                        url: apiUrl + "/api/Songs/AddSongToQueue",
                                         type: "POST",
                                         data: JSON.stringify(song),
                                         contentType: "application/JSON"
@@ -152,17 +155,20 @@
             return encodedValue;
         }
 
-        function addSongToQueue(song) {
+        function addSongToQueue(song, addToPlaylist) {
             var queueEmpty = songs.length == 0;
             songs.push(song);
-            playlist.add({
-                title: song.name,
-                artist: song.artist,
-                mp3: song.url,
-                poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
-            });
-            if (queueEmpty) {
-                playlist.play(0);
+            if (addToPlaylist) {
+                playlist.add({
+                    id: song.id,
+                    title: song.name,
+                    artist: song.artist,
+                    mp3: song.url,
+                    poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
+                });
+                if (queueEmpty) {
+                    playlist.play(0);
+                }
             }
             $('#song-list').append("<li>" + htmlEncode(song.name) + "<br />ID: " + song.id + "</li>");
         }
@@ -178,8 +184,42 @@
                 supplied: "mp3",
                 wmode: "window",
                 smoothPlayBar: true,
-                keyEnabled: true
-            });
+                keyEnabled: true,
+                nextHandler: function () {
+                    $.ajax({
+                        url: apiUrl + "/api/Songs/RemoveTopSong",
+                        type: "POST"
+                    });
+                }
+            });
+        }
+
+        function initializeQueue() {
+            //get all current songs
+            $('#song-list').empty();
+            $.ajax({
+                url: apiUrl + "/api/Songs/",
+                type: "GET",
+                success: function (songs, textStatus, jqXHR) {
+                    for (var i = 0; i < songs.length; i++) {
+                        addSongToQueue(songs[i], true);
+                    }
+                }
+            });
+        }
+
+        function refreshQueue() {
+            //get all current songs
+            $('#song-list').empty();
+            $.ajax({
+                url: apiUrl + "/api/Songs/",
+                type: "GET",
+                success: function (songs, textStatus, jqXHR) {
+                    for (var i = 0; i < songs.length; i++) {
+                        addSongToQueue(songs[i], false);
+                    }
+                }
+            });
         }
     </script>
 }
