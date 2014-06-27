@@ -83,11 +83,13 @@
             dukebox.client.swapSongs = function (bottomSongIndex, topSongIndex) {
                 playlist.swap(bottomSongIndex, topSongIndex);
                 refreshQueue();
+                notif({ msg: "Challenge Won!", type: "success" });
             };
 
             dukebox.client.removeSongFromQueue = function (index) {
                 playlist.remove(index);
                 $('#song-list > li').eq(index).fadeOut();
+                console.log("removing list item");
             };
 
 
@@ -171,13 +173,13 @@
                 supplied: "mp3",
                 wmode: "window",
                 smoothPlayBar: true,
-                keyEnabled: true,
-                nextHandler: function () {
-                    $.ajax({
-                        url: apiUrl + "/api/Songs/RemoveTopSong",
-                        type: "POST"
-                    });
-                }
+                keyEnabled: true
+            });
+            playlist.option("nextHandler", function (test) {
+                $.ajax({
+                    url: apiUrl + "/api/Songs/RemoveTopSong",
+                    type: "POST"
+                });
             });
         }
 

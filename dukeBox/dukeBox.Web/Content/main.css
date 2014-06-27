@@ -29,7 +29,7 @@ textarea {
 #wrapper #song-list-wrapper {
   float: left;
   width: 100%;
-  margin: 20px 0;
+  margin: 40px 0;
 }
 #wrapper #song-list-wrapper #song-list {
   padding: 0;
@@ -48,7 +48,7 @@ textarea {
   float: left;
 }
 #wrapper #song-list-wrapper #song-list li .poster img {
-  width: 200px;
+  width: 160px;
   margin-right: 25px;
 }
 #wrapper #song-list-wrapper #song-list li:last-child {

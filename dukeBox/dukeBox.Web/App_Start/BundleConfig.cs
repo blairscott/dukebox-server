@@ -23,14 +23,17 @@ namespace dukeBox
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/main.css",
-                      "~/Content/jplayer.blue.monday.css"));
+                      "~/Content/jplayer.blue.monday.css",
+                      "~/Content/jbar.css",
+                      "~/Content/notifIt.css"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                        "~/Scripts/moment.min.js",
                        "~/Scripts/jquery.jplayer.min.js",
                        "~/Scripts/jplayer.playlist.min.js",
-                       "~/Scripts/jquery.jplayer.inspector.js"));
+                       "~/Scripts/jquery.jplayer.inspector.js",
+                       "~/Scripts/notifIt.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

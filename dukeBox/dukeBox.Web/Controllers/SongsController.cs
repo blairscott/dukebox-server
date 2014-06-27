@@ -20,7 +20,7 @@ namespace dukeBox.Controllers
         // GET api/<controller>/5
         public IEnumerable<Song> Get(string query)
         {
-            var results = Subsonic.Search(query, includeArtists:false, includeAlbums:false).Cast<Song>();
+            var results = Subsonic.Search(query.Trim(), includeArtists:false, includeAlbums:false).Cast<Song>();
             return results;
         }
 
