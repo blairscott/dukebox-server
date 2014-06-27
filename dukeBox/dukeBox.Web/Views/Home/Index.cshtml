@@ -131,7 +131,7 @@
                             $.each(subsonicItems, function (index, value) {
                                 var song = value;
                                 var li = $("<li>").html(song.name + " (" + song.artist + ", <em>" + song.album + "</em>) <br />Length: " + moment().startOf('day').seconds(song.duration).format('H:mm:ss') + "<br />");
-                                var a = $("<a>").text("Add to Queue").attr('href', '#').click(function () {                                    
+                                var a = $("<a>").text("Add to Queue").attr('href', '#').click(function () {
                                     $.ajax({
                                         url: apiUrl + "/api/Songs/AddSongToQueue",
                                         type: "POST",
@@ -164,13 +164,13 @@
                     title: song.name,
                     artist: song.artist,
                     mp3: song.url,
-                    poster: "http://www.jplayer.org/audio/poster/Miaow_640x360.png"
+                    poster: song.imageUrl
                 });
                 if (queueEmpty) {
                     playlist.play(0);
                 }
             }
-            $('#song-list').append("<li>" + htmlEncode(song.name) + "<br />ID: " + song.id + "</li>");
+            $('#song-list').append("<li>" + "<img style='width:60px;height:60px' src='" + song.imageUrl + "' /> " + htmlEncode(song.name) + "<br />ID: " + song.id + "</li>");
         }
 
         function initializeJPlayer() {

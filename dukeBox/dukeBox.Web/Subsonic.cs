@@ -199,6 +199,7 @@ namespace dukeBox
         public string title;
         public string duration;
         public string url;
+        public string imageUrl;
 
         public Song()
         {
@@ -223,19 +224,13 @@ namespace dukeBox
             this.parent = null;
             this.lastAccessed = DateTime.Now.ToString();
             this.url = Subsonic.BuildDirectURL("stream", new Dictionary<string, string> { { "id", this.id } });
+            this.imageUrl = Subsonic.BuildDirectURL("getCoverArt", new Dictionary<string, string> { { "id", this.id } });            
         }
 
         public Song(string title, string artist, string album, string id, SubsonicItem parent)
+            :this(title, artist, album, id)
         {
-            this.artist = artist;
-            this.title = title;
-            this.album = album;
-            this.name = title;
-            this.id = id;
-            this.itemType = SubsonicItem.SubsonicItemType.Song;
             this.parent = parent;
-            this.lastAccessed = DateTime.Now.ToString();
-            this.url = Subsonic.BuildDirectURL("stream", new Dictionary<string, string> { { "id", this.id } });
         }
 
         public Stream getStream()
